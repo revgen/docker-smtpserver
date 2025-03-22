@@ -17,7 +17,10 @@ jobs:
       - name: Get docker image metadata
         continue-on-error: true
         run: |
-          curl -sL "https://raw.githubusercontent.com/revgen/revgen/refs/heads/master/.github/github-docker-check-image-version" > github-docker-check-image-version
+          curl -IsL "https://raw.githubusercontent.com/revgen/revgen/master/.github/scripts/github-docker-check-image-version" | grep "HTTP\|date\|length"
+          curl -sL "https://raw.githubusercontent.com/revgen/revgen/master/.github/scripts/github-docker-check-image-version" > github-docker-check-image-version
+          ls -ahl ./github-docker-check-image-version
+          file ./github-docker-check-image-version
           bash ./github-docker-check-image-version || true
       - name: Login to Docker Hub
         uses: docker/login-action@v1
@@ -52,5 +55,8 @@ jobs:
       - name: Build status
         if: success()
         run: |
-          curl -sL "https://raw.githubusercontent.com/revgen/revgen/refs/heads/master/.github/github-docker-build-status" > github-docker-build-status
+          curl -IsL "https://raw.githubusercontent.com/revgen/revgen/master/.github/scripts/github-docker-build-status" | grep "HTTP\|date\|length"
+          curl -sL "https://raw.githubusercontent.com/revgen/revgen/master/.github/scripts/github-docker-build-status" > github-docker-build-status
+          ls -ahl ./github-docker-build-status
+          file ./github-docker-build-status
           bash ./github-docker-build-status "${IMAGE_NAME}" "${IMAGE_VERSION}" "${REPO_IMAGE_VERSION}" "${{ steps.docker_build.outputs.digest }}"
