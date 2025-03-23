@@ -41,7 +41,7 @@ make build
 
 ## Links
 
-* [Docker image source code](https://github.com/revgen/docker/docker-smtpserver)
+* [Docker image source code](https://github.com/revgen/docker-smtpserver)
 * [Docker hub page](https://hub.docker.com/r/rev9en/smtpserver)
 * [Docker alpine official page](https://hub.docker.com/_/alpine)
 * [Postfix Documentation](https://www.postfix.org/documentation.html)
